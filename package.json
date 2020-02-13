@@ -1,0 +1,41 @@
+{
+  "name": "article",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next -p 8080",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoodDayTodayOkey/article.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoodDayTodayOkey/article/issues"
+  },
+  "homepage": "https://github.com/GoodDayTodayOkey/article#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bem-cn": "^3.0.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.2.1",
+    "next-redux-wrapper": "^4.0.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.1",
+    "@types/react": "^16.9.19",
+    "typescript": "^3.7.5"
+  }
+}
