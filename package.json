@@ -23,6 +23,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bem-cn": "^3.0.1",
+    "dotenv": "^8.2.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.2.1",
     "react": "^16.12.0",

@@ -14,16 +14,17 @@ export const config = { amp: true };
 
 const Articles: NextPage<Props> = (props) => {
   const createMarkup = (html) => ({ __html: html })
-  const renderContent = ({ type, content }) => {
+  const renderContent = ({ type, content, index }) => {
     const types = {
       'editor': (content) => (
-        < amp-fit-text width="300" height="200" layout="responsive" >
-          <div dangerouslySetInnerHTML={createMarkup(content.text)} />
+        < amp-fit-text key={index} width="300" height="200" layout="responsive" >
+          <div key={index} dangerouslySetInnerHTML={createMarkup(content.text)} />
         </ amp-fit-text >
       ),
       'images': (content) => (
         <amp-carousel width="400"
           height="300"
+          key={index}
           layout="responsive"
           type="slides">
           {content.images.map((image, i) => (
@@ -41,6 +42,7 @@ const Articles: NextPage<Props> = (props) => {
           on="tap:lightbox1"
           role="button"
           tabindex="0"
+          key={index}
           src={content.image.url.original}
           alt="Picture of a dog"
           title="Picture of a dog, view in lightbox"
@@ -52,6 +54,7 @@ const Articles: NextPage<Props> = (props) => {
         (
           <amp-youtube width="480"
             height="270"
+            key={index}
             layout="responsive"
             data-param-modestbranding="1"
             data-param-rel="1"
@@ -62,7 +65,6 @@ const Articles: NextPage<Props> = (props) => {
     }
     return types[type](content)
   }
-  const texts = props.response.content.filter(child => child.type === "editor")
   return (
     <>
       <Head>
@@ -78,9 +80,9 @@ const Articles: NextPage<Props> = (props) => {
         < amp-fit-text width="300" height="200" layout="responsive" >
           <div dangerouslySetInnerHTML={createMarkup(props.response.description)} />
         </ amp-fit-text >
-        {props.response.content.map(child => {
+        {props.response.content.map( (child, index) => {
           const { type, content } = child;
-          return renderContent({ type, content })
+          return renderContent({ type, content, index })
         }
         )}
       </ div >
@@ -90,7 +92,7 @@ const Articles: NextPage<Props> = (props) => {
 }
 
 Articles.getInitialProps = async (context) => {
-  const response = await fetch(`https://new-api.80.lv/articles/${context.query.slug}`).then(data => data.json());
+  const response = await fetch(`${process.env.API_URL}/articles/${context.query.slug}`).then(data => data.json());
   return { slug: context.query.slug, response };
 }
 
