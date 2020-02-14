@@ -71,21 +71,19 @@ const Articles: NextPage<Props> = (props) => {
         <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
         <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
       </Head>
-      <div>
-        <div className={b()} >
-          < amp-fit-text width="300" height="200" layout="responsive" >
-            <div dangerouslySetInnerHTML={createMarkup(props.response.title)} />
-          </ amp-fit-text >
-          < amp-fit-text width="300" height="200" layout="responsive" >
-            <div dangerouslySetInnerHTML={createMarkup(props.response.description)} />
-          </ amp-fit-text >
-          {props.response.content.map(child => {
-            const { type, content } = child;
-            return renderContent({ type, content })
-          }
-          )}
-        </ div >
-      </div>
+      <div className={b()} >
+        < amp-fit-text width="300" height="200" layout="responsive" >
+          <div dangerouslySetInnerHTML={createMarkup(props.response.title)} />
+        </ amp-fit-text >
+        < amp-fit-text width="300" height="200" layout="responsive" >
+          <div dangerouslySetInnerHTML={createMarkup(props.response.description)} />
+        </ amp-fit-text >
+        {props.response.content.map(child => {
+          const { type, content } = child;
+          return renderContent({ type, content })
+        }
+        )}
+      </ div >
     </>
 
   )
